@@ -6,6 +6,7 @@ import BedsCard from '../Cards/BedsCard/BedsCard'
 import CasesCard from '../Cards/CasesCard/CasesCard'
 import YoutubeCard from '../Cards/YoutubeCard/YoutubeCard'
 import Casecount from '../casecount/Casecount'
+import Vaccination from '../vaccination/vaccination/Vaccination'
 import './Home.css'
 
 const Home = () => {
@@ -37,8 +38,8 @@ const Home = () => {
                 <Casecount currentData={currentDataIndia} place={'India'} />
             </div>
 
-            <div className = 'recommended-hosp-heading'>Recommended Hospitals</div>
-            <div className ='recommended-hosp-container'>
+            <div className='recommended-hosp-heading'>Recommended Hospitals</div>
+            <div className='recommended-hosp-container'>
                 <BedsCard />
                 <BedsCard />
                 <BedsCard />
@@ -48,6 +49,11 @@ const Home = () => {
                 </button>
             </div>
             <YoutubeCard />
+            <div className = 'vaccination-container'>
+                <div>Search By State and Ditrict</div>
+                <Vaccination />
+            </div>
+
         </div>
     )
 }
