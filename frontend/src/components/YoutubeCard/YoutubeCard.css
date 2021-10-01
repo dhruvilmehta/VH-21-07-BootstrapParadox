@@ -1,0 +1,23 @@
+.youtube-videos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 0.1rem solid black ;
+    padding: 1.5rem;
+    background-color: #faf2e5;
+    border-radius: 0.5rem;
+}
+iframe{
+    border-radius: 0.5rem;
+}
+
+@media (max-width: 800px) {
+    .youtube-videos{
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    iframe{
+        width:20rem;
+        margin-top: 1rem;
+    }
+  }
