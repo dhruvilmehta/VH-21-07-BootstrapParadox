@@ -6,10 +6,18 @@ import Cookies from 'js-cookie';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import Home from './components/home/Home';
+
 import Navbar from './components/Navbar/Navbar.jsx'
+
+import Register from './components/Hospital/Register';
+import Login from './components/Hospital/Login';
+import HospitalHome from "./components/Hospital/HospitalHome"
+import { HospitalContext } from './HospitalContext';
+
 function App() {
 
   const [user, setUser] = useState(null)
+  const [hospital, setHospital] = useState(null)
 
   useEffect(() => {
     const cookie = Cookies.get()
@@ -41,22 +49,30 @@ function App() {
 
   return (
 
+
     <Router>
       <div className="App">
         <UserContext.Provider value={{ user, setUser }}>
+          <HospitalContext.Provider value={{ hospital, setHospital }}>
+            {user ? <Navbar /> : null}
+            <Switch>
+              <Route exact path="/" >{user ? <Home /> : <Redirect to="/login" />}</Route>
+              <Route path="/login" >{!user ? <Signin /> : <Redirect to="/" />}</Route>
+              <Route path="/signup" >{!user ? <Signup /> : <Redirect to="/" />}</Route>
+              <Route exact path="/hospital/">{<HospitalHome />}</Route>
+              <Route path="/hospital/register">{<Register />}</Route>
+              <Route path="/hospital/login">{<Login />}</Route>
 
-          {user ?<Navbar/> : null}
-          <Switch>
-            <Route exact path="/" >{user ? <Home /> : <Redirect to="/login" />}</Route>
-            <Route path="/login" >{!user ? <Signin /> : <Redirect to="/" />}</Route>
-            <Route path="/signup" >{!user ? <Signup /> : <Redirect to="/" />}</Route>
+
+
+
           </Switch>
-        </UserContext.Provider>
+        </HospitalContext.Provider>
+      </UserContext.Provider>
 
 
-      </div>
-    </Router>
-
+    </div>
+</Router >
 
 
   );

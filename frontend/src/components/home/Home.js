@@ -1,11 +1,13 @@
 import React from 'react'
+
 import { useState, useContext, useEffect } from 'react'
 import { UserContext } from "../../UserContext"
-import BedsCard from '../BedsCard/BedsCard'
-import CasesCard from '../CasesCard/CasesCard'
-import YoutubeCard from '../YoutubeCard/YoutubeCard'
+import BedsCard from '../Cards/BedsCard/BedsCard'
+import CasesCard from '../Cards/CasesCard/CasesCard'
+import YoutubeCard from '../Cards/YoutubeCard/YoutubeCard'
 import Casecount from '../casecount/Casecount'
 import './Home.css'
+
 const Home = () => {
     const { user, setUser } = useContext(UserContext)
 
