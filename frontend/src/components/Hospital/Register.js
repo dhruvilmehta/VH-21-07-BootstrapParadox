@@ -22,7 +22,7 @@ const Register = () => {
     lat: "",
     long: "",
     address:"",
-    number:""
+    phone:""
   });
 
   useEffect(() => {
@@ -69,7 +69,7 @@ const Register = () => {
           lat: details.lat,
           long: details.long,
           address:details.address,
-          number:details.number
+          phone:details.phone
         }),
         headers: { "Content-Type": "application/json" },
       });
@@ -253,11 +253,11 @@ const Register = () => {
               className="form-control"
               placeholder=" Number *"
               name="number"
-              value={details.state}
+              value={details.phone}
               onChange={(e) => {
                 setDetails((prevState) => ({
                   ...prevState,
-                  number: e.target.value,
+                  phone: e.target.value,
                 }));
               }}
             />

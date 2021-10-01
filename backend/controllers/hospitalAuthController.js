@@ -67,9 +67,9 @@ module.exports.signup=async (req,res)=>{
 try{
     console.log(req.body)
     const distance = 0;
-    const {name,password,email,pincode,city,state,lat,long,address,number }=req.body;
+    const {name,password,email,pincode,city,state,lat,long,address,phone }=req.body;
 
-const newHospital= await Hospital.create({name,password,email,city,pincode,state,lat,long,distance,address,number})
+const newHospital= await Hospital.create({name,password,email,city,pincode,state,lat,long,distance,address,phone})
 
 
 const token = createJWT(newHospital._id)
