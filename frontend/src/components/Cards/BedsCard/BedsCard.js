@@ -1,14 +1,14 @@
 import React from "react";
 import './BedsCard.css'
 
-function BedsCard() {
+function BedsCard({name,beds,city,state}) {
   return (
-    <div class="card border border-secondary">
-      <div class="card-body">
-        <h5 class="card-title">Lilavati Hospital</h5>
-        <h6 class="card-subtitle mb-2">20 Beds</h6>
-        <p class="card-text">K.T Marg , Vasai(W),401209</p>
-        <div class="btn btn-primary bg-dark">Book Now</div>
+    <div className="card border border-secondary">
+      <div className="card-body">
+        <h5 className="card-title">{name}</h5>
+        <h6 className="card-subtitle mb-2">{beds}</h6>
+        <p className="card-text">{city},{state}</p>
+        <div className="btn btn-primary bg-dark">Book Now</div>
       </div>
     </div>
   );

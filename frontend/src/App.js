@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import Home from './components/home/Home';
-
+import UserHospital from './components/userHospital/UserHospital';
 import Navbar from './components/Navbar/Navbar.jsx'
 
 import Register from './components/Hospital/Register';
@@ -59,13 +59,10 @@ function App() {
               <Route exact path="/" >{user ? <Home /> : <Redirect to="/login" />}</Route>
               <Route path="/login" >{!user ? <Signin /> : <Redirect to="/" />}</Route>
               <Route path="/signup" >{!user ? <Signup /> : <Redirect to="/" />}</Route>
+              <Route path = '/hospital/index'>{ <UserHospital />}</Route>
               <Route exact path="/hospital/">{<HospitalHome />}</Route>
               <Route path="/hospital/register">{<Register />}</Route>
               <Route path="/hospital/login">{<Login />}</Route>
-
-
-
-
           </Switch>
         </HospitalContext.Provider>
       </UserContext.Provider>

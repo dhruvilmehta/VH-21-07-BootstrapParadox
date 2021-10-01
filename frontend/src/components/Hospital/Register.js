@@ -2,16 +2,10 @@ import React from "react";
 import { useEffect, useState, useContext } from "react";
 import "./Register.css";
 import { Redirect } from "react-router-dom";
-import { HospitalHelper } from "./HospitalHelper";
-import { Location } from "./HospitalHelper";
 import { HospitalContext } from "../../HospitalContext";
 
 const Register = () => {
   const { hospital, setHospital } = useContext(HospitalContext);
-
-  const [lat, setlat] = useState("");
-  const [long, setlong] = useState("");
-  const [FilteredData, setFilteredData] = useState([]);
   const [details, setDetails] = useState({
     name: "",
     email: "",
@@ -23,27 +17,7 @@ const Register = () => {
     long: "",
     address:"",
     number:""
-  });
-
-  useEffect(() => {
-    console.log("hello")
-    const distance1 = async () => {
-      const hospitalDistance = await HospitalHelper();
-      // hospitalDistance.map((h) => Location(h));
-      console.log(hospitalDistance)
-      const filterlocation = () => {
-        let hospital_present = hospitalDistance.filter((h) =>
-        
-        {console.log()
-        return Location(h) < 300});
-        console.log("hospital_present",hospital_present);
-        setFilteredData(hospital_present);
-      };
-      filterlocation()
-    };
-    distance1()
-  }, []);
-
+  })
   const [errors, setErrors] = useState({
     usernameError: "",
     emailError: "",
@@ -99,7 +73,6 @@ const Register = () => {
   return (
     <div>
       <h1 className="shead">Register Hospital</h1>
-
       <div className="container signupcontainer mt-5 px-5 pt-3">
         <form onSubmit={(e) => submitHandler(e)}>
           <div className="form-group my-3">
