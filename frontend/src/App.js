@@ -1,15 +1,19 @@
 import './App.css';
-import {BrowserRouter as Router,Switch,Route,Redirect} from "react-router-dom"
-import {useState,useEffect} from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
+import { useState, useEffect } from 'react';
 import { UserContext } from './UserContext';
 import Cookies from 'js-cookie';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import Home from './components/home/Home';
+
+import Navbar from './components/Navbar/Navbar.jsx'
+
 import Register from './components/Hospital/Register';
 import Login from './components/Hospital/Login';
 import HospitalHome from "./components/Hospital/HospitalHome"
 import { HospitalContext } from './HospitalContext';
+
 function App() {
 
   const [user, setUser] = useState(null)
@@ -22,10 +26,10 @@ function App() {
     const verifyUser = async () => {
       try {
         const res = await fetch('http://localhost:5000/verifyuser', {
-        method:"POST",  
-        credentials: 'include',
+          method: "POST",
+          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
-          body:JSON.stringify({cookie})
+          body: JSON.stringify({ cookie })
         });
         const data = await res.json();
         setUser(data);
@@ -36,7 +40,7 @@ function App() {
 
     }
     verifyUser()
-    
+
 
   }, [])
 
@@ -45,31 +49,32 @@ function App() {
 
   return (
 
-<Router>
-<div className="App">
-<UserContext.Provider value={{user,setUser}}>
-<HospitalContext.Provider value={{hospital,setHospital}}>
 
-<Switch>
-<Route exact path="/" >{user?<Home/>:<Redirect to = "/login"/>}</Route>
-    <Route  path="/login" >{!user?<Signin/>:<Redirect to="/"/>}</Route>
-    <Route  path="/signup" >{!user?<Signup/>:<Redirect to="/" />}</Route>
-    <Route exact path="/hospital/">{<HospitalHome/>}</Route>
-    <Route path="/hospital/register">{<Register/>}</Route>
-    <Route path="/hospital/login">{<Login/>}</Route>
-    
+    <Router>
+      <div className="App">
+        <UserContext.Provider value={{ user, setUser }}>
+          <HospitalContext.Provider value={{ hospital, setHospital }}>
+            {user ? <Navbar /> : null}
+            <Switch>
+              <Route exact path="/" >{user ? <Home /> : <Redirect to="/login" />}</Route>
+              <Route path="/login" >{!user ? <Signin /> : <Redirect to="/" />}</Route>
+              <Route path="/signup" >{!user ? <Signup /> : <Redirect to="/" />}</Route>
+              <Route exact path="/hospital/">{<HospitalHome />}</Route>
+              <Route path="/hospital/register">{<Register />}</Route>
+              <Route path="/hospital/login">{<Login />}</Route>
 
 
-  </Switch>
-  </HospitalContext.Provider>
-</UserContext.Provider>
-      
- 
+
+
+          </Switch>
+        </HospitalContext.Provider>
+      </UserContext.Provider>
+
+
     </div>
-</Router>
+</Router >
 
 
-   
   );
 }
 

@@ -1,0 +1,41 @@
+
+.count-container{
+    display: flex;
+    justify-content: space-around;
+    margin: 30px auto;
+}
+
+.recommended-hosp-container{
+
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin: 30px auto;
+    background-color: #4535aa;
+    margin: 0;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    padding: 0.5% 1.5% 3% 1.5%;
+}
+.recommended-hosp-heading{
+
+    background-color: #4535aa;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    padding: 2% 1.5%;
+    margin-top: 30px;
+    text-align: left;
+}
+
+.see-all-btn{
+
+    background-color: #000033;
+    width: 10%;
+    height: fit-content;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
