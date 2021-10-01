@@ -8,9 +8,9 @@ function CentersCard(props) {
     <div class="card border border-secondary centerscard">
       <div class="card-body ">
         <h5 class="card-title">{item.name}</h5>
-        <h6 class="card-subtitle mb-2 slotnums">Dose 1:{item.available_capacity_dose1} Dose 2:{item.available_capacity_dose2} </h6>
+        <div class="card-subtitle mb-2 slotnums"><div className="dose1">Dose 1:<span className="dose1count">{item.available_capacity_dose1}</span></div><div className="dose2"> Dose 2:<span className="dose2count">{item.available_capacity_dose2} </span></div></div>
         <p class="card-text">{item.address}</p>
-        <div class="btn btn-primary bg-dark">Book Now</div>
+         <a href="https://selfregistration.cowin.gov.in/"><button class="btn btn-primary bg-dark booknowbutton">Book Now</button></a>
       </div>
     </div>
   );
