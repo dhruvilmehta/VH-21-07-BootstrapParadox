@@ -1,4 +1,4 @@
-const User = require("../models/User")
+const Hospital = require("../models/Hospital")
 const jwt = require("jsonwebtoken")
 
 const maxAge= 5*24*60*60;
@@ -38,12 +38,12 @@ module.exports.signin=async (req,res)=>{
 const {password,email }=req.body;
 
   try{
-      const user=await User.login(email,password);
+      const hospital=await Hospital.login(email,password);
 
-  const token=createJWT(user._id)
+  const token=createJWT(hospital._id)
 
   res.cookie("jwt",token,{maxAge:maxAge*1000})
-  res.status(201).send({user})
+  res.status(201).send({hospital})
   }
   catch(err){
     
@@ -66,16 +66,16 @@ module.exports.signup=async (req,res)=>{
 
 try{
     console.log(req.body)
-    const {name,password,email,pincode,city,state,aadhar_no }=req.body;
+    const {name,password,email,pincode,city,state }=req.body;
 
-const newUser= await User.create({name,password,email,city,pincode,state,aadhar_no})
+const newHospital= await Hospital.create({name,password,email,city,pincode,state})
 
 
-const token = createJWT(newUser._id)
+const token = createJWT(newHospital._id)
 res.cookie("jwt",token,{maxAge:maxAge*1000})
 
 
-res.status(201).send({user:newUser})
+res.status(201).send({hospital:newHospital})
 }
 catch(err){
    
@@ -88,29 +88,29 @@ catch(err){
         
         }
 
-        module.exports.verifyUser=async (req,res,next)=>{
+        // module.exports.verifyUser=async (req,res,next)=>{
 
-            const token = req.body.cookie.jwt;
+        //     const token = req.body.cookie.jwt;
 
            
                 
               
-                if (token) {
+        //         if (token) {
                 
-                    jwt.verify(token, 'somekey', async (err, decodedToken) => {
+        //             jwt.verify(token, 'somekey', async (err, decodedToken) => {
                      
-                        if (err) {
-                            console.log(err.message)
-                        } else {
-                            let user = await User.findById(decodedToken.id)
-                            res.json(user);
-                            next();
+        //                 if (err) {
+        //                     console.log(err.message)
+        //                 } else {
+        //                     let user = await User.findById(decodedToken.id)
+        //                     res.json(user);
+        //                     next();
             
-                        }
-                    })
-                } else {
-                    next();
-                }
+        //                 }
+        //             })
+        //         } else {
+        //             next();
+        //         }
 
            
               
@@ -118,7 +118,7 @@ catch(err){
 
 
           
-        }
+        // }
 
 
         // module.exports.updateUser=async(req,res)=>{

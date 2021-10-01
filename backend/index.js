@@ -24,8 +24,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 const authRoutes= require("./routes/authRoutes.js")
-
+const hospitalAuthRoutes= require("./routes/hospitalAuthRoutes.js")
+const hospitalRoutes= require("./routes/hospitalRoutes.js")
 app.use(authRoutes);
+app.use(hospitalRoutes)
+app.use(hospitalAuthRoutes)
 
 app.get("/",(req,res)=>{
     res.send("home")
