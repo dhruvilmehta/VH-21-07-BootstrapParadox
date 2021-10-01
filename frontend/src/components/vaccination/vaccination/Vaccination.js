@@ -26,7 +26,6 @@ function  Vaccination() {
                 .then(data=>{
                 setDistricts(data.districts)
             })
-                console.log("Inside State")
             }
         })
     }
@@ -44,15 +43,18 @@ function  Vaccination() {
         })
     }
 
-    return isLoading===true ? "Loading" : <div>
-            <input type="text" list="statelist" id="selectstate" onChange={getDistricts}></input>
+    return isLoading===true ? "Loading" : <div id="vaccinationslots">
+        <h5 className="infoline">To Know Vaccination Centers and Slot availability, Search Here</h5>
+            <label for="selectstate" className="label">Enter Your State</label>
+            <input type="text" list="statelist" id="selectstate" onChange={getDistricts} placeholder="Enter Your State"></input>
             <datalist id="statelist">
                 {states.map((item,index)=>{
                     return <option key={index}>{item.state_name}</option>
                 })}
             </datalist>
 
-            <input type="text" list="districtlist" id="selectdistricts" onChange={getCenters}></input>
+            <label for="selectdistricts" className="label">Enter Your District</label>
+            <input type="text" list="districtlist" id="selectdistricts" onChange={getCenters} placeholder="Enter Your District"></input>
             <datalist id="districtlist">
                 {districts.map((item,index)=>{
                     return <option key={index}>{item.district_name}</option>

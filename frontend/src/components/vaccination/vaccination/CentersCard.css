@@ -8,4 +8,15 @@
 .slotnums{
     color: #6b4700;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.slotnums span{
+    color: red;
+}
+.booknowbutton{
+    position: absolute;
+    bottom: 0.5rem;
+    right: 29%;
 }
