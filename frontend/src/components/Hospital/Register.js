@@ -3,7 +3,10 @@ import { useEffect, useState, useContext } from "react";
 import "./Register.css";
 import { Redirect } from "react-router-dom";
 import { HospitalContext } from "../../HospitalContext";
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
+toast.configure()
 const Register = () => {
   const { hospital, setHospital } = useContext(HospitalContext);
   const [details, setDetails] = useState({
@@ -15,8 +18,8 @@ const Register = () => {
     state: "",
     lat: "",
     long: "",
-    address:"",
-    number:""
+    address: "",
+    number: ""
   })
   const [errors, setErrors] = useState({
     usernameError: "",
@@ -42,24 +45,43 @@ const Register = () => {
           pincode: details.pincode,
           lat: details.lat,
           long: details.long,
-          address:details.address,
-          number:details.number
+          address: details.address,
+          number: details.number
         }),
         headers: { "Content-Type": "application/json" },
       });
       const data = await res.json();
 
-      if (data.errors) {
-        setErrors({
-          emailError: data.errors.email,
-          usernameError: data.errors.name,
-          passwordError: data.errors.password,
-        });
+      if(data.errors){
+        if (data.errors.email) {
+          toast.error(data.errors.email, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000
+          })
+        }
+        else if (data.errors.name) {
+          toast.error(data.errors.email, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000
+          })
+        }
+        else if (data.errors.password) {
+          toast.error(data.errors.email, {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000
+          })
+        }
       }
+      
       if (data.hospital) {
+        
         console.log(data.hospital);
         setHospital(data.hospital);
-        localStorage.setItem("hospital_id",data.hospital._id)
+        localStorage.setItem("hospital_id", data.hospital._id)
+        toast.success("Successfully Registered", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 2000
+        })
       }
     } catch (error) {
       console.log(error);
