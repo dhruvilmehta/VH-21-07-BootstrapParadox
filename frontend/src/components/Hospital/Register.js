@@ -1,23 +1,31 @@
 import React from 'react'
-import { useState,useContext } from 'react'
-import "./SignUp.css"
+import { useEffect,useState,useContext } from 'react'
+import "./Register.css"
+import { Redirect } from 'react-router-dom'
 
-import {UserContext} from "../../UserContext"
+import {HospitalContext} from "../../HospitalContext"
 
 
-const Signup = () => {
+const Register = () => {
 
-const {user,setUser}=useContext(UserContext)
+const {hospital,setHospital}=useContext(HospitalContext)
+
 const [details,setDetails]=useState({
   name:'',
   email:'',
   password:'',
-  city:"",
-  state:"",
-  pincode:"",
-  aadhar_no:""
+  pincode:'',
+  city:'',
+  state:'',
+  lat:'',
+  long:''
 
 })
+
+useEffect(() => {
+   Location()
+}, [])
+
 
 const [errors,setErrors]=useState({
   usernameError:'',
@@ -31,10 +39,10 @@ const submitHandler= async (e)=>{
   setErrors(errors);
 
 try{
-  const res = await fetch('http://localhost:5000/signup', {
+  const res = await fetch('http://localhost:5000/hospital/signup', {
                 method: 'POST',
                 credentials: 'include',
-                body: JSON.stringify({name:details.name,email:details.email,password:details.password,city:details.city,pincode:details.pincode,state:details.state,aadhar_no:details.aadhar_no}),
+                body: JSON.stringify({name:details.name,email:details.email,password:details.password,city:details.city,state:details.state,pincode:details.pincode,lat:details.lat,long:details.long}),
                 headers: { 'Content-Type': 'application/json' }
             });
             const data= await res.json()
@@ -48,8 +56,9 @@ try{
             })
 
         }
-        if (data.user) {
-            setUser(data.user)
+        if (data.hospital) {
+            console.log(data.hospital)
+            setHospital(data.hospital)
         }
       }  catch(error){
         console.log(error)
@@ -57,10 +66,24 @@ try{
 }
 
 
+const Location = () => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+ 
+    });
+  };
+
+
+
+if(hospital){
+    return <Redirect to="/hospital/"/>
+}
+
     return (
         <div>
 
-    <h1 className="shead">Signup</h1>
+    <h1 className="shead">Register Hospital</h1>
 
 <div  className="container signupcontainer mt-5 px-5 pt-3">
 
@@ -100,7 +123,7 @@ try{
         />
       </div>
       <div className="text-danger" type="password">{errors.emailError}</div>
-    
+
       <div className="form-group my-3">
         <input
           type="password"
@@ -178,22 +201,8 @@ try{
           }}
         />
       </div>
-      <div className="form-group my-3">
-        <input
-          type="text"
-          className="form-control"
-          placeholder=" Aadhar No. *"
-          
-          name="aadhar_no"
-          value={details.aadhar_no}
-          onChange={(e)=>{
-            setDetails(prevState => ({
-                ...prevState,
-                aadhar_no: e.target.value
-            }));
-          }}
-        />
-      </div>
+     
+      
       <div className="form-group my-3 text-center">
         <button type='submit' className="btn btn-dark " >Signup</button>
  
@@ -202,10 +211,10 @@ try{
     </form>
               
    </div>
-    {console.log(user)}
+    {console.log(hospital)}
         </div>
     )
 }
 
-export default Signup
+export default Register
 
