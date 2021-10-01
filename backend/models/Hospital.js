@@ -31,16 +31,26 @@ const hospitalSchema = new mongoose.Schema({
    },long:{
        type:Number
    },beds:{
-       type:Number
+       type:Number,
+       default:0
    },icu_beds:{
-    type:Number
+    type:Number,
+    default:0
    },oxygen_cylinders:{
-    type:Number
+    type:Number,
+    default:0
    },ambulance:{
-       type:Number
+       type:Number,
+       default:0
    },distance:{
        type:Number,
        default:0
+   },
+   phone:{
+       type:Number,
+   },
+   address:{
+       type:String
    }
     
 

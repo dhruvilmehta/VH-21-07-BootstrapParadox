@@ -8,7 +8,7 @@ module.exports.getHospitals=async(req,res)=>{
 }
 
 module.exports.updateData=async(req,res)=>{
-
+    console.log(req.body)
     const hospital =await Hospital.findByIdAndUpdate(req.body.hospital_id,{
         beds:req.body.beds,
         icu_beds:req.body.icu_beds,
@@ -22,4 +22,11 @@ module.exports.updateData=async(req,res)=>{
     })
     
     return res.status(200).send(hospital)
+}
+
+module.exports.getHospital=async(req,res)=>{
+    let id=req.params.id
+    const hospital = await Hospital.findById(id)
+    console.log(hospital)
+    res.status(200).send(hospital)
 }

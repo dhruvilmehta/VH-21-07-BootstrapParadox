@@ -6,8 +6,6 @@ import { HospitalContext } from "../../HospitalContext";
 
 const Register = () => {
   const { hospital, setHospital } = useContext(HospitalContext);
-
- 
   const [details, setDetails] = useState({
     name: "",
     email: "",
@@ -17,10 +15,9 @@ const Register = () => {
     state: "",
     lat: "",
     long: "",
-  });
-
-  
-
+    address:"",
+    number:""
+  })
   const [errors, setErrors] = useState({
     usernameError: "",
     emailError: "",
@@ -45,6 +42,8 @@ const Register = () => {
           pincode: details.pincode,
           lat: details.lat,
           long: details.long,
+          address:details.address,
+          number:details.number
         }),
         headers: { "Content-Type": "application/json" },
       });
@@ -60,6 +59,7 @@ const Register = () => {
       if (data.hospital) {
         console.log(data.hospital);
         setHospital(data.hospital);
+        localStorage.setItem("hospital_id",data.hospital._id)
       }
     } catch (error) {
       console.log(error);
@@ -216,6 +216,36 @@ const Register = () => {
                 setDetails((prevState) => ({
                   ...prevState,
                   state: e.target.value,
+                }));
+              }}
+            />
+          </div>
+          <div className="form-group my-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder=" Number *"
+              name="number"
+              value={details.state}
+              onChange={(e) => {
+                setDetails((prevState) => ({
+                  ...prevState,
+                  number: e.target.value,
+                }));
+              }}
+            />
+          </div>
+          <div className="form-group my-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder=" Address *"
+              name="address"
+              value={details.address}
+              onChange={(e) => {
+                setDetails((prevState) => ({
+                  ...prevState,
+                  address: e.target.value,
                 }));
               }}
             />
