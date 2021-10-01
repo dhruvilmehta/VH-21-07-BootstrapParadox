@@ -1,0 +1,42 @@
+.loginheading {
+  text-align: center;
+  color: #4535aa;
+  margin-top: 15vh;
+}
+
+.logincontainer {
+  width: 500px;
+  margin: 10vh;
+  border: 1px solid black;
+  height: 300px;
+  background-color: #4535aa;
+}
+
+.or {
+  margin-top: 4%;
+}
+
+.loginform {
+  margin-top: 4rem;
+}
+
+.loginsubmit {
+  width: 100px;
+}
+
+@media screen and (max-width: 480px) {
+  .logincontainer {
+    width: 250px;
+    height: 350px;
+  }
+
+  .or {
+    margin-left: 38%;
+  }
+  .loginform {
+    margin-top: 2rem;
+  }
+  .sgnpbtn {
+    margin-left: 25%;
+  }
+}
