@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { isEmail } = require('validator');
-const userSchema = new mongoose.Schema({
+const hospitalSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Please enter a name']
@@ -18,35 +18,45 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Please enter a password'],
         minlength: [6, 'The password should be at least 6 characters long']
     },
-   city:{
+    city:{
         type:String,
    },state:{
        type:String,
 
    },pincode:{
         type:Number
-   },aadhar_no:{
+   },lat:{
+       type:Number
+   },long:{
+       type:Number
+   },beds:{
+       type:Number
+   },icu_beds:{
+    type:Number
+   },oxygen_cylinders:{
+    type:Number
+   },ambulance:{
        type:Number
    }
     
 
 })
-userSchema.pre('save', async function (next) {
+hospitalSchema.pre('save', async function (next) {
     const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(this.password, salt);
 
     next()
 })
-userSchema.statics.login = async function (email, password) {
+hospitalSchema.statics.login = async function (email, password) {
   
-    const user = await this.findOne({ email });
+    const hospital = await this.findOne({ email });
 
    
-    if (user) {
+    if (hospital) {
         
-        const isAuthenticated = await bcrypt.compare(password, user.password);
+        const isAuthenticated = await bcrypt.compare(password, hospital.password);
         if (isAuthenticated) {
-            return user;
+            return hospital;
         }
         throw Error('incorrect pwd');
     }
@@ -54,5 +64,5 @@ userSchema.statics.login = async function (email, password) {
 
 }
 
-const User = mongoose.model('user', userSchema);
-module.exports = User;
+const Hospital = mongoose.model('hospital', hospitalSchema);
+module.exports = Hospital;
