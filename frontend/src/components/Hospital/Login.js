@@ -45,6 +45,7 @@ try{
         if (data.hospital) {
             console.log(data.hospital)
             setHospital(data.hospital)
+            localStorage.setItem("hospital_id",data.hospital._id)
         }
       }  catch(error){
         console.log(error)
