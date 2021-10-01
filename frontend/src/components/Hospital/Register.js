@@ -25,17 +25,21 @@ const Register = () => {
 
   useEffect(() => {
     console.log("hello")
-    const distance = async () => {
+    const distance1 = async () => {
       const hospitalDistance = await HospitalHelper();
-      hospitalDistance.map((h) => Location(h));
+      // hospitalDistance.map((h) => Location(h));
+      console.log(hospitalDistance)
       const filterlocation = () => {
-        let hospital_present = hospitalDistance.filter((h) => h.distance < 500);
+        let hospital_present = hospitalDistance.filter((h) =>
+        
+        {console.log()
+        return Location(h) < 300});
         console.log("hospital_present",hospital_present);
         setFilteredData(hospital_present);
       };
       filterlocation()
     };
-    distance()
+    distance1()
   }, []);
 
   const [errors, setErrors] = useState({
@@ -77,6 +81,7 @@ const Register = () => {
       if (data.hospital) {
         console.log(data.hospital);
         setHospital(data.hospital);
+        localStorage.setItem("hospital_id",data.hospital._id)
       }
     } catch (error) {
       console.log(error);

@@ -10,23 +10,21 @@ export const HospitalHelper = async () => {
 
 
 export const Location = (h) => {
+  let a=1
     navigator.geolocation.getCurrentPosition(function (position) {
-      // console.log("Latitude is :", position.coords.latitude);
-      // console.log("Longitude is :", position.coords.longitude);
-    
       const dist = distance(position, h.lat, h.long);
-      h.distance = dist;
-      console.log(typeof(h.distance))
-      
-      return dist;
+      // h.distance = dist;
+      // console.log(typeof(h.distance))
+      console.log("c",dist)
+      a=dist
     });
+    console.log("ss",a)
   };
   const distance = (position, lat1, lon1) => {
-    // var lat1 = Hospital[0].lat;
-    // var lon1 = Hospital[0].long;
+
     var lat2 = position.coords.latitude;
     var lon2 = position.coords.longitude;
-    var p = 0.017453292519943295; // Math.PI / 180
+    var p = 0.017453292519943295; 
     var c = Math.cos;
     var a =
       0.5 -
