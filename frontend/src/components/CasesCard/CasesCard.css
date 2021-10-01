@@ -1,0 +1,48 @@
+.title {
+  height: 4rem;
+  border: 0.1rem solid black;
+  border-radius: 0.5rem;
+  margin: 0rem auto;
+  text-align: center;
+  color: black;
+}
+.today-numbers {
+  border-bottom: 0.1rem solid black;
+  width: 10rem;
+  margin: auto;
+  text-align: center;
+  color: #6b4700;
+  font-weight: bold;
+}
+.yesterday-doses {
+  border: 0.1rem solid black;
+  border-radius: 0.3rem;
+  text-align: center;
+  color: black;
+}
+.total-doses {
+  border: 0.1rem solid black;
+  border-radius: 0.3rem;
+  text-align: center;
+  color: black;
+}
+.total-numbers {
+  border-bottom: 1px solid black;
+  margin: auto;
+  width: 5rem;
+  color: #6b4700;
+  font-weight: bold;
+}
+.yesterday-numbers {
+  border-bottom: 1px solid black;
+  margin: auto;
+  width: 5rem;
+  color: #6b4700;
+  font-weight: bold;
+}
+.casescard {
+  width: 25rem;
+  height: 17rem;
+  border-radius: 0.5rem;
+  background-color: #faf2e5;
+}
