@@ -1,0 +1,64 @@
+
+.case-count-container{
+
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #9DCCDE;
+    background-color: #EDFAFF;
+    border-radius: 5px;
+    width: 48%;
+    margin: 15px;
+}
+
+.place{
+    text-align: left;
+    padding: 10px 15px;
+    font-size: 25px;
+    font-weight: 600;
+    color: #734d26;
+}
+.subcard-container{
+    display: flex;
+    justify-content: space-around;
+}
+.subcard{
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    width: 25%;
+    height: 80px;
+    align-items: center;
+    justify-content: center;
+    margin: 3% auto;
+}
+.active-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2% 5%;
+}
+.active{
+    border-bottom: 1px solid grey;
+    width: 25%;
+    font-size: 30px;
+    font-weight: 600;
+    color: #000080;
+}
+.count{
+
+    border-bottom: 1px solid grey;
+    width: 75%;
+}
+.total{
+    background: linear-gradient(to bottom, #d3a70f 0%,#f6d04a 100%);
+    border: 1px solid #ffff33;
+    
+}
+.recovered{
+    background: linear-gradient(to bottom, #9be89c 0%,#cdf97d 100%);
+}
+
+.deceised{
+    background: linear-gradient(to bottom, #fe8683 0%,#ff9d9b 100%);
+}
