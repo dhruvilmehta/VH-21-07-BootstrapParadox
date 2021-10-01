@@ -226,7 +226,7 @@ const Register = () => {
               className="form-control"
               placeholder=" Number *"
               name="number"
-              value={details.state}
+              value={details.phone}
               onChange={(e) => {
                 setDetails((prevState) => ({
                   ...prevState,
