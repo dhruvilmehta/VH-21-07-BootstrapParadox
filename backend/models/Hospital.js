@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('mongoose-double')(mongoose)
 const bcrypt = require('bcrypt');
 const { isEmail } = require('validator');
 const hospitalSchema = new mongoose.Schema({
@@ -37,6 +38,9 @@ const hospitalSchema = new mongoose.Schema({
     type:Number
    },ambulance:{
        type:Number
+   },distance:{
+       type:Number,
+       default:0
    }
     
 
