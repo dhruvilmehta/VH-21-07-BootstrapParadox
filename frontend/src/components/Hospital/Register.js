@@ -21,6 +21,8 @@ const Register = () => {
     state: "",
     lat: "",
     long: "",
+    address:"",
+    number:""
   });
 
   useEffect(() => {
@@ -66,6 +68,8 @@ const Register = () => {
           pincode: details.pincode,
           lat: details.lat,
           long: details.long,
+          address:details.address,
+          number:details.number
         }),
         headers: { "Content-Type": "application/json" },
       });
@@ -239,6 +243,36 @@ const Register = () => {
                 setDetails((prevState) => ({
                   ...prevState,
                   state: e.target.value,
+                }));
+              }}
+            />
+          </div>
+          <div className="form-group my-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder=" Number *"
+              name="number"
+              value={details.state}
+              onChange={(e) => {
+                setDetails((prevState) => ({
+                  ...prevState,
+                  number: e.target.value,
+                }));
+              }}
+            />
+          </div>
+          <div className="form-group my-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder=" Address *"
+              name="address"
+              value={details.address}
+              onChange={(e) => {
+                setDetails((prevState) => ({
+                  ...prevState,
+                  address: e.target.value,
                 }));
               }}
             />

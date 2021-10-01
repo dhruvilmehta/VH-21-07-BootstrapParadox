@@ -45,6 +45,12 @@ const hospitalSchema = new mongoose.Schema({
    },distance:{
        type:Number,
        default:0
+   },
+   phone:{
+       type:Number,
+   },
+   address:{
+       type:String
    }
     
 
