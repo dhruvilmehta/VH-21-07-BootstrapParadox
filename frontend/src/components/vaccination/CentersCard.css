@@ -1,10 +1,11 @@
-.bedscard{
+.centerscard{
     border-radius: 0.5rem;
     width: 15rem;
-    height: 10rem;
+    height: 13rem;
     background-color: #faf2e5;
+    margin: 0rem 1rem;
 }
-.card-subtitle{
+.slotnums{
     color: #6b4700;
     font-weight: bold;
 }
