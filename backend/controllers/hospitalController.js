@@ -43,8 +43,6 @@ module.exports.bookAppointment=async(req,res)=>{
       }
     );
 
-
-
 }
 
 module.exports.getAppointments=async(req,res)=>{
