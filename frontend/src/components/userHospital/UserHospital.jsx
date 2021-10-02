@@ -40,6 +40,7 @@ export default function UserHospital() {
             <div className='recommended-hosp-container'>
                { FilteredData.map((hosp) =>{
                    return <BedsCard 
+                   _id = {hosp._id}
                    name={hosp.name}
                    beds = {hosp.beds}
                    city = {hosp.city}

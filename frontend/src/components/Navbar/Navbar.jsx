@@ -20,7 +20,7 @@ export default function Navbar() {
                     <span className='icons'><AiFillHome /></span>
                     <span> Home</span>
                 </Link></li>
-                <li><Link className='nav-items' to='/hospitals'>
+                <li><Link className='nav-items' to='/hospital/index'>
                     <span className='icons'><FaHospital /></span>
                     <span> Hostpitals</span>
 

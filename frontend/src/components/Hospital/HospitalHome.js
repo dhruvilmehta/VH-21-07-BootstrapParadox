@@ -5,7 +5,7 @@ import "./HospitalHome.css"
 
 const HospitalHome = () => {
     const { hospital, setHospital } = useContext(HospitalContext);
-
+    const [appointmentData,setAppointmentData] = useState(null)
 useEffect(() => {
     let hos_id=localStorage.getItem("hospital_id");
     fetch(`http://localhost:5000/get-hospital/${hos_id}`).then(res=>res.json()).then(res=>setHospital(res))
@@ -24,12 +24,17 @@ const editInventory=(e)=>{
         body:JSON.stringify({hospital_id:hospital._id,beds,icu_beds,ambulance,oxygen_cylinders}),
         headers:{"Content-type":"application/json"}
     }).then(res=>res.json()).then(res=>setHospital(res))
- 
-
 }
 
+
+useEffect(async () =>{
+    const response = await fetch(`http://localhost:5000/get-appointments/${hospital._id}`) 
+    const res = await response.json()
+    console.log(res)
+    setAppointmentData(res)
+},[])
  return (
-        <div className="container">
+        <div className="hospital-dashboard-container">
          
           
             <div className="white-section">
@@ -78,7 +83,18 @@ const editInventory=(e)=>{
         
             <div className="text-start m-5">
                 <h3 >Bookings</h3>
-
+                <div>
+                    {
+                        appointmentData ? appointmentData.map(data=>{
+                            console.log(data.name)
+                            return (
+                            <div>
+                                <h3>{data.name}</h3>
+                            </div>)
+                        }) : null
+                        // console.log
+                    } 
+                </div>
 
             </div>
            
