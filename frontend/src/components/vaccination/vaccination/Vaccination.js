@@ -68,9 +68,11 @@ function  Vaccination() {
                     return <CentersCard item={item}/>
                 })}
             </div>
-            <div>
+
+
             
             </div>
+
         </div>
 }
 

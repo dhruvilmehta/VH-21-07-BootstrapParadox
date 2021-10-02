@@ -76,7 +76,9 @@
   border: none;
   color: #3366cc;
 }
-
+.nav-items-1{
+  margin: 0;
+}
 @media screen and (max-width:1040px) {
   .nav-items-1{
     display:none;

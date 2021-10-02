@@ -48,6 +48,8 @@ export default function UserHospital() {
                    beds = {hosp.beds}
                    city = {hosp.city}
                    state = {hosp.state}
+                   icuBeds = {hosp.icu_beds}
+                   oxygen = {hosp.oxygen_cylinders}
                    />
                })
                }

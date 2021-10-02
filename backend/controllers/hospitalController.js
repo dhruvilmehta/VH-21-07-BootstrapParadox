@@ -38,7 +38,7 @@ module.exports.bookAppointment=async(req,res)=>{
         if (err) {
           res.send(err);
         } else {
-          res.send({message:"added successfully"});
+          res.send({message:"Your Request has been received ! You will get an email within some time."});
         }
       }
     );
