@@ -27,6 +27,17 @@ const editInventory=(e)=>{
 }
 
 
+const handleAproval=(user_email,user_name,user_id)=>{
+    console.log({user_email,user_name,user_id,hospital_name:hospital.name})
+    fetch(`http://localhost:5000/approve-appointment/${hospital._id}`,{
+        headers:{"Content-type":"application/json"},
+        body:JSON.stringify({user_email,user_name,user_id,hospital_name:hospital.name}),
+        method:"post"
+
+    }).then(res=>res.json()).then(res=>console.log(res))
+
+}
+
 useEffect(async () =>{
     const response = await fetch(`http://localhost:5000/get-appointments/${hospital._id}`) 
     const res = await response.json()
@@ -89,7 +100,13 @@ useEffect(async () =>{
                             console.log(data.name)
                             return (
                             <div>
-                                <h3>{data.name}</h3>
+                                <div class="card" style={{"width": "18rem"}}>
+  <div class="card-body">
+    <h5 class="card-title">{data.name}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{data.email},{data.city},{data.state}</h6>
+    <button className="btn btn-success" onClick={()=>handleAproval(data.email,data.name,data._id)}>Approve</button> 
+  </div>
+</div>
                             </div>)
                         }) : null
                         // console.log

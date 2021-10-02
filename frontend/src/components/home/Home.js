@@ -7,6 +7,7 @@ import CasesCard from '../Cards/CasesCard/CasesCard'
 import YoutubeCard from '../Cards/YoutubeCard/YoutubeCard'
 import Casecount from '../casecount/Casecount'
 import Vaccination from '../vaccination/vaccination/Vaccination'
+import Services from "../services/Services"
 import './Home.css'
 
 const Home = () => {
@@ -53,6 +54,7 @@ const Home = () => {
                 <div>Search By State and Ditrict</div>
                 <Vaccination />
             </div>
+            <Services/>
 
         </div>
     )
