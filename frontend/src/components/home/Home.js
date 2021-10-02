@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 import { useState, useContext, useEffect } from 'react'
 import { UserContext } from "../../UserContext"
 import BedsCard from '../Cards/BedsCard/BedsCard'
@@ -8,6 +8,7 @@ import YoutubeCard from '../Cards/YoutubeCard/YoutubeCard'
 import Casecount from '../casecount/Casecount'
 import Vaccination from '../vaccination/vaccination/Vaccination'
 import Services from "../services/Services"
+import { HospitalHelper , distance} from "../Hospital/HospitalHelper";
 import './Home.css'
 
 const Home = () => {
@@ -15,6 +16,41 @@ const Home = () => {
 
     const [currentDataIndia, setCurrentDataIndia] = useState(null)
     const [currentDataWorld, setCurrentDataWorld] = useState(null)
+
+
+    
+    const [lat, setLat] = useState(null);
+    const [long, setLong] = useState(null);
+    const [hospitalList,setHospitalList] = useState([])
+    const [FilteredData, setFilteredData] = useState([]);
+
+
+    useEffect(()=>{
+
+        navigator.geolocation.getCurrentPosition(function (position) {
+          
+          setLat(position.coords.latitude)
+          setLong(position.coords.longitude)
+          console.log(position)
+        });
+      },[])
+
+      useEffect(async ()=>{
+        const hospList = await HospitalHelper();
+        setHospitalList(hospList)
+      },[])
+
+      useEffect(() => {
+        console.log("hello")
+        if(hospitalList !== undefined){
+            const filteredHosp = hospitalList.filter((h)=>{
+                console.log(distance(lat,long,h))
+                return distance(lat,long,h) < 200
+              })
+              setFilteredData(filteredHosp)
+        }
+    
+      }, [hospitalList,lat,long]);
 
     useEffect(async () => {
 
@@ -39,23 +75,37 @@ const Home = () => {
                 <Casecount currentData={currentDataIndia} place={'India'} />
             </div>
 
-            <div className='recommended-hosp-heading'>Recommended Hospitals</div>
-            <div className='recommended-hosp-container'>
-                <BedsCard />
-                <BedsCard />
-                <BedsCard />
-                <BedsCard />
-                <button className='see-all-btn'>
+            <div className='recommended-hosp-heading-container'>
+                <div className='recommended-hosp-heading'>Recommended Hospitals</div>
+                <Link to='/hospital/index' className='see-all-btn'>
                     See All
-                </button>
+                </Link>
+            </div>
+            <div className='recommended-hosp-container'>
+                {FilteredData.slice(0,4).map((hosp, ind) => {
+
+                    return (
+                        <BedsCard
+                            _id={hosp._id}
+                            name={hosp.name}
+                            beds={hosp.beds}
+                            city={hosp.city}
+                            state={hosp.state}
+                        />
+                    )
+                })
+                }
+
             </div>
             <YoutubeCard />
-            <div className = 'vaccination-container'>
+            <div className='vaccination-container'>
                 <div>Search By State and Ditrict</div>
                 <Vaccination />
             </div>
-            <Services/>
 
+            <div>
+                <Services />
+            </div>
         </div>
     )
 }

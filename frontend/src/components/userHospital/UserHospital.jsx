@@ -27,11 +27,14 @@ export default function UserHospital() {
 
       useEffect(() => {
         console.log("hello")
-        const filteredHosp = hospitalList.filter((h)=>{
-          console.log(distance(lat,long,h))
-          return distance(lat,long,h) < 200
-        })
-        setFilteredData(filteredHosp)
+        if(hospitalList !== undefined){
+            const filteredHosp = hospitalList.filter((h)=>{
+                console.log(distance(lat,long,h))
+                return distance(lat,long,h) < 200
+              })
+              setFilteredData(filteredHosp)
+        }
+    
       }, [hospitalList,lat,long]);
 
     return (
