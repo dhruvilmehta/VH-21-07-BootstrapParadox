@@ -51,6 +51,12 @@ const hospitalSchema = new mongoose.Schema({
    },
    address:{
        type:String
+   },
+   appointment:{
+       type:Array
+   },
+   approved:{
+       type:Array
    }
     
 
