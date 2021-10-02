@@ -1,0 +1,18 @@
+#service{
+    margin: 0.2rem 1rem;
+    border-radius: 0.1rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+}
+#selectstateforhospitals{
+    margin: 0.2rem 1rem;
+    border-radius: 0.1rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+}
+#selectdistrictsforhospitals{
+    margin: 0.2rem 1rem;
+    border-radius: 0.1rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+}
