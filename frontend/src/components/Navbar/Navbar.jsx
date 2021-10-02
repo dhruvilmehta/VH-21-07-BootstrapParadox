@@ -19,7 +19,7 @@ export default function Navbar() {
     return (
         <div className="navbar">
             <div className="nav-brand" style={{ padding: 0, margin: 0 }}>
-                {/* <h6 className='m-0 p-0'>Covid-19</h6> */}
+                <h6 className='m-0 p-0'>Covid-19</h6>
             </div>
 
             <ul className="nav-items-1" id={linksVisible ? "hidden" : ""}>

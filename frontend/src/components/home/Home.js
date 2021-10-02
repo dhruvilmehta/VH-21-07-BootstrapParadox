@@ -69,7 +69,10 @@ const Home = () => {
     }, [])
     return (
         <div>
-            <img className='home-image' src="https://cdn.pixabay.com/photo/2020/04/04/13/41/corona-5002341_1280.jpg" alt="" />
+            {/* <div className='img-text-container'> */}
+                <img className='home-image' src="https://cdn.pixabay.com/photo/2020/04/04/13/41/corona-5002341_1280.jpg" alt="" />
+            {/* </div> */}
+            
             <div className='count-container'>
                 <Casecount currentData={currentDataWorld} place={'World'} />
                 <Casecount currentData={currentDataIndia} place={'India'} />
