@@ -73,7 +73,7 @@ function  Vaccination() {
             
             </div>
 
-        </div>
+
 }
 
 export default Vaccination
