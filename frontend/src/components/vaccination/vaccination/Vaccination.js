@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import CentersCard from './CentersCard'
+import Faq from '../../FAQs/Faq'
 import './Vaccination.css'
 
 function  Vaccination() {
@@ -67,7 +68,9 @@ function  Vaccination() {
                     return <CentersCard item={item}/>
                 })}
             </div>
-            
+            <div>
+                <Faq />
+            </div>
         </div>
 }
 

@@ -29,7 +29,7 @@ export default function Navbar() {
                 </Link></li>
                 <li><Link className='nav-items' to='/hospital/index'>
                     <span className='icons'><FaHospital /></span>
-                    <span> Hostpitals</span>
+                    <span> Hospitals</span>
 
                 </Link>
                 </li>
