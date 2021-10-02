@@ -7,7 +7,7 @@ import CasesCard from '../Cards/CasesCard/CasesCard'
 import YoutubeCard from '../Cards/YoutubeCard/YoutubeCard'
 import Casecount from '../casecount/Casecount'
 import Vaccination from '../vaccination/vaccination/Vaccination'
-import Services from '../services/Services'
+import Services from "../services/Services"
 import './Home.css'
 
 const Home = ({ FilteredData }) => {
@@ -66,9 +66,10 @@ const Home = ({ FilteredData }) => {
                 <div>Search By State and Ditrict</div>
                 <Vaccination />
             </div>
-                <div>
-                    <Services/>
-                </div>
+
+            <div>
+                <Services />
+            </div>
         </div>
     )
 }
