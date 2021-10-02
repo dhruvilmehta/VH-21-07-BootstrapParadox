@@ -69,7 +69,7 @@ function Services() {
 
     return (
         <div className="services">
-            <h5 className="infoline">To Know about Various Services, Search Here</h5>
+            <h3 className="infoline m-3 text-start">To Know about Various Services, Search Here</h3>
             <input type="text" list="statelistforhospitals" id="selectstateforhospitals" placeholder="Enter Your State" onChange={getDistricts}></input>
             <datalist id="statelistforhospitals">
                 {states.map((item,index)=>{

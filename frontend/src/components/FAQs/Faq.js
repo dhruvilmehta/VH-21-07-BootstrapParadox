@@ -40,8 +40,8 @@ function Faq() {
         }
     }
 
-    return <div className="faq">
-        <h2 id="faqsheading">FAQ's</h2>
+    return <div className="faq mt-5">
+        <h2 id="faqsheading" className="mt-3">FAQ's</h2>
         <div className="FaqBox">
             <div className="box box1">
                 <div className="question question1" id="question1">1. IS COVID-19 WORSE THAN FLU?</div>
