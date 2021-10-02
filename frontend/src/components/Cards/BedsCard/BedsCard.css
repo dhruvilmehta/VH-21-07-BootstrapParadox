@@ -1,10 +1,10 @@
 .card{
     border-radius: 0.5rem;
-    width: 21%;
+    /* width: 90%; */
     height: 15rem;
     border: 1px solid #9DCCDE;
     background-color: #EDFAFF;
-    margin-right: 20px;
+    
 }
 .card-body{
     display: flex;
