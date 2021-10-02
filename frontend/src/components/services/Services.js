@@ -52,19 +52,24 @@ function Services() {
 
     const getServices=(event)=>{
         let district=document.getElementById("selectdistrictsforhospitals").value
-        console.log(event.target.value)
-
-        data.map((item,index)=>{
-            if(item.facility===event.target.value && item.city===district){
-                // console.log(item.facility,item.city)
-                setFinalData(prevState=>([...prevState,item]))
-            }
-        })
+        // console.log(event.target.value)
+        if(event.target.value==="Hospital"||event.target.value==="Ambulance"||event.target.value==="Oxygen Concentrator"){
+            if(event.target.value==="Hospital"){setFinalData([])}
+            if(event.target.value==="Ambulance"){setFinalData([])}
+            if(event.target.value==="Oxygen Concentrator"){setFinalData([])}
+            data.map((item,index)=>{
+                if(item.facility===event.target.value && item.city===district){
+                    // console.log(item.facility,item.city)
+                    setFinalData(prevState=>([...prevState,item]))
+                }
+            })
+        }
     }
     console.log(finalData)
 
     return (
         <div className="services">
+            <h5 className="infoline">To Know about Various Services, Search Here</h5>
             <input type="text" list="statelistforhospitals" id="selectstateforhospitals" placeholder="Enter Your State" onChange={getDistricts}></input>
             <datalist id="statelistforhospitals">
                 {states.map((item,index)=>{
@@ -87,7 +92,7 @@ function Services() {
                 <option>Hospital</option>
             </datalist>
 
-            {finalData.length!==0 && <div>
+            {finalData.length!==0 && <div className="servicescards">
                 {finalData.map((item,index)=>{
                     return <ServicesCard key={index} item={item} />
                 })}

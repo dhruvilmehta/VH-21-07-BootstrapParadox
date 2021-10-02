@@ -8,21 +8,50 @@ import Signup from './components/auth/Signup';
 import Home from './components/home/Home';
 import UserHospital from './components/userHospital/UserHospital';
 import Navbar from './components/Navbar/Navbar.jsx'
-
+import { HospitalHelper, distance } from './components/Hospital/HospitalHelper';
 import Register from './components/Hospital/Register';
 import Login from './components/Hospital/Login';
 import HospitalHome from "./components/Hospital/HospitalHome"
 import { HospitalContext } from './HospitalContext';
-
+import Redirector from './components/Redirector/Redirector';
 function App() {
 
   const [user, setUser] = useState(null)
   const [hospital, setHospital] = useState(null)
 
+
+  const [lat, setLat] = useState(null);
+  const [long, setLong] = useState(null);
+  const [hospitalList, setHospitalList] = useState([])
+  const [FilteredData, setFilteredData] = useState([]);
+
+
+  useEffect(() => {
+
+    navigator.geolocation.getCurrentPosition(function (position) {
+
+      setLat(position.coords.latitude)
+      setLong(position.coords.longitude)
+      console.log(position)
+    });
+  }, [])
+
+  useEffect(async () => {
+    const hospList = await HospitalHelper();
+    setHospitalList(hospList)
+  }, [])
+
+  useEffect(() => {
+    console.log("hello")
+    const filteredHosp = hospitalList.filter((h) => {
+      console.log(distance(lat, long, h))
+      return distance(lat, long, h) < 200
+    })
+    setFilteredData(filteredHosp)
+  }, [hospitalList, lat, long]);
+
   useEffect(() => {
     const cookie = Cookies.get()
-    // document.cookie="user=Tejas";
-
     const verifyUser = async () => {
       try {
         const res = await fetch('http://localhost:5000/verifyuser', {
@@ -36,12 +65,8 @@ function App() {
       } catch (error) {
         console.log(error)
       }
-
-
     }
     verifyUser()
-
-
   }, [])
 
   return (
@@ -53,20 +78,20 @@ function App() {
           <HospitalContext.Provider value={{ hospital, setHospital }}>
             {user ? <Navbar /> : null}
             <Switch>
-              <Route exact path="/" >{user ? <Home /> : <Redirect to="/login" />}</Route>
+              <Route exact path="/" >{user ? <Home FilteredData={FilteredData}/> : <Redirector />}</Route>
               <Route path="/login" >{!user ? <Signin /> : <Redirect to="/" />}</Route>
               <Route path="/signup" >{!user ? <Signup /> : <Redirect to="/" />}</Route>
-              <Route path = '/hospital/index'>{ <UserHospital />}</Route>
+              <Route path='/hospital/index'>{<UserHospital FilteredData={FilteredData}/>}</Route>
               <Route exact path="/hospital/">{<HospitalHome />}</Route>
               <Route path="/hospital/register">{<Register />}</Route>
               <Route path="/hospital/login">{<Login />}</Route>
-          </Switch>
-        </HospitalContext.Provider>
-      </UserContext.Provider>
+            </Switch>
+          </HospitalContext.Provider>
+        </UserContext.Provider>
 
 
-    </div>
-</Router >
+      </div>
+    </Router >
 
 
   );

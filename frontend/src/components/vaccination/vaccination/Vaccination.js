@@ -44,7 +44,7 @@ function  Vaccination() {
     }
 
     return isLoading===true ? "Loading" : <div id="vaccinationslots">
-        <h5 className="infoline">To Know Vaccination Centers and Slot availability, Search Here</h5>
+        <h5 className="infoline">To know about various services, Search Here</h5>
             <label for="selectstate" className="label">Enter Your State</label>
             <input type="text" list="statelist" id="selectstate" onChange={getDistricts} placeholder="Enter Your State"></input>
             <datalist id="statelist">

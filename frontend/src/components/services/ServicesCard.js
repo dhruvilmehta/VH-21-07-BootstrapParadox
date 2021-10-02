@@ -1,13 +1,16 @@
 import React from 'react'
+import './ServicesCard.css'
 
 function ServicesCard(props){
+  const {item}=props
     return (
-        <div class="card border border-secondary servicescard">
-      <div class="card-body ">
-        <h5 class="card-title"></h5>
-        <div class="card-subtitle mb-2"></div>
-        <p class="card-text"></p>
-         <button class="btn btn-primary bg-dark">Book Now</button>
+        <div className="card border border-secondary servicescard">
+      <div className="card-body ">
+        <div className="cardheading">{item.facility}</div>
+        <h5 className="card-title">{item.distributor}</h5>
+        <div className="card-subtitle mb-2">{item.city}</div>
+        <p className="card-text"></p>
+         <button className="btn btn-primary bg-dark servicescardbutton">{item.helpline}</button>
       </div>
     </div>
     )

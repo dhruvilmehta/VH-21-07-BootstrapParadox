@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 import { useState, useContext, useEffect } from 'react'
 import { UserContext } from "../../UserContext"
 import BedsCard from '../Cards/BedsCard/BedsCard'
@@ -7,9 +7,10 @@ import CasesCard from '../Cards/CasesCard/CasesCard'
 import YoutubeCard from '../Cards/YoutubeCard/YoutubeCard'
 import Casecount from '../casecount/Casecount'
 import Vaccination from '../vaccination/vaccination/Vaccination'
+import Services from '../services/Services'
 import './Home.css'
 
-const Home = () => {
+const Home = ({ FilteredData }) => {
     const { user, setUser } = useContext(UserContext)
 
     const [currentDataIndia, setCurrentDataIndia] = useState(null)
@@ -38,22 +39,36 @@ const Home = () => {
                 <Casecount currentData={currentDataIndia} place={'India'} />
             </div>
 
-            <div className='recommended-hosp-heading'>Recommended Hospitals</div>
-            <div className='recommended-hosp-container'>
-                <BedsCard />
-                <BedsCard />
-                <BedsCard />
-                <BedsCard />
-                <button className='see-all-btn'>
+            <div className='recommended-hosp-heading-container'>
+                <div className='recommended-hosp-heading'>Recommended Hospitals</div>
+                <Link to='/hospital/index' className='see-all-btn'>
                     See All
-                </button>
+                </Link>
+            </div>
+            <div className='recommended-hosp-container'>
+                {FilteredData.map((hosp, ind) => {
+
+                    return (
+                        <BedsCard
+                            _id={hosp._id}
+                            name={hosp.name}
+                            beds={hosp.beds}
+                            city={hosp.city}
+                            state={hosp.state}
+                        />
+                    )
+                })
+                }
+
             </div>
             <YoutubeCard />
-            <div className = 'vaccination-container'>
+            <div className='vaccination-container'>
                 <div>Search By State and Ditrict</div>
                 <Vaccination />
             </div>
-
+                <div>
+                    <Services/>
+                </div>
         </div>
     )
 }
