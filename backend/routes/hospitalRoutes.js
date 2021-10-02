@@ -11,5 +11,7 @@ router.patch("/update-hospital",hospitalController.updateData)
 router.post("/book-appointment/:id",hospitalController.bookAppointment)
 router.get("/get-appointments/:id",hospitalController.getAppointments)
 
+router.post("/approve-appointment/:id",hospitalController.approveAppointment)
+
 
 module.exports=router
