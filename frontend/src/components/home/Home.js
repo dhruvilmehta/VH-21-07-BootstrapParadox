@@ -8,13 +8,49 @@ import YoutubeCard from '../Cards/YoutubeCard/YoutubeCard'
 import Casecount from '../casecount/Casecount'
 import Vaccination from '../vaccination/vaccination/Vaccination'
 import Services from "../services/Services"
+import { HospitalHelper , distance} from "../Hospital/HospitalHelper";
 import './Home.css'
 
-const Home = ({ FilteredData }) => {
+const Home = () => {
     const { user, setUser } = useContext(UserContext)
 
     const [currentDataIndia, setCurrentDataIndia] = useState(null)
     const [currentDataWorld, setCurrentDataWorld] = useState(null)
+
+
+    
+    const [lat, setLat] = useState(null);
+    const [long, setLong] = useState(null);
+    const [hospitalList,setHospitalList] = useState([])
+    const [FilteredData, setFilteredData] = useState([]);
+
+
+    useEffect(()=>{
+
+        navigator.geolocation.getCurrentPosition(function (position) {
+          
+          setLat(position.coords.latitude)
+          setLong(position.coords.longitude)
+          console.log(position)
+        });
+      },[])
+
+      useEffect(async ()=>{
+        const hospList = await HospitalHelper();
+        setHospitalList(hospList)
+      },[])
+
+      useEffect(() => {
+        console.log("hello")
+        if(hospitalList !== undefined){
+            const filteredHosp = hospitalList.filter((h)=>{
+                console.log(distance(lat,long,h))
+                return distance(lat,long,h) < 200
+              })
+              setFilteredData(filteredHosp)
+        }
+    
+      }, [hospitalList,lat,long]);
 
     useEffect(async () => {
 
@@ -46,7 +82,7 @@ const Home = ({ FilteredData }) => {
                 </Link>
             </div>
             <div className='recommended-hosp-container'>
-                {FilteredData.map((hosp, ind) => {
+                {FilteredData.slice(0,4).map((hosp, ind) => {
 
                     return (
                         <BedsCard
