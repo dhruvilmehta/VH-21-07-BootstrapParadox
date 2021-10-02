@@ -99,7 +99,6 @@ const Home = () => {
             </div>
             <YoutubeCard />
             <div className='vaccination-container'>
-                <div>Search By State and Ditrict</div>
                 <Vaccination />
             </div>
 

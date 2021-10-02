@@ -1,0 +1,56 @@
+.FaqBox{
+    /* border:0.2rem solid black; */
+    width: 100%;
+    height: 20rem;
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: #9DCCDE;
+    /* border-radius: 0.5rem; */
+    margin-top: 0rem;
+}
+.box{
+    border: 2px solid black;
+    width: 45%;
+    margin: 1.5rem 1.5rem;
+    /* background-color:#9DCCDE; */
+    background-color: #4535aa;
+    border-radius: 0.5rem;
+}
+.box1{
+    margin-right: 0.5rem;
+}
+.box2{
+    margin-left: 0.5rem;
+    background-color: rgb(224, 224, 224);
+}
+.question{
+    border: 2px solid black;
+    margin: 0.5rem;
+    height: 3.5rem;
+    border-radius: 0.5rem;
+    background-color: rgb(231 231 231);
+}
+.ansbox{
+    /* border: 2px solid black; */
+    margin:0.5rem;
+    height: 14rem;
+    display: none;
+    background-color: rgb(231 231 231);
+}
+.question:hover{
+    background-color: #61bbdb;
+}
+#faqsheading{
+    
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+}
+.faq{
+    background-color: #9DCCDE;
+    border: 1px solid black;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+}
