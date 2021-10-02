@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import CentersCard from './CentersCard'
-import Faq from '../../FAQs/Faq'
+
 import './Vaccination.css'
 
 function  Vaccination() {
@@ -45,16 +45,16 @@ function  Vaccination() {
     }
 
     return isLoading===true ? "Loading" : <div id="vaccinationslots">
-        <h5 className="infoline">To know about various services, Search Here</h5>
-            <label for="selectstate" className="label">Enter Your State</label>
-            <input type="text" list="statelist" id="selectstate" onChange={getDistricts} placeholder="Enter Your State"></input>
+        <h3 className="infoline text-start m-3 text-dark">To know about Vaccination Centers, Search Here</h3>
+            <label for="selectstate" className="label text-dark">Enter Your State</label>
+            <input type="text" list="statelist" id="selectstate" onChange={getDistricts} placeholder="Enter Your State" className="text-dark"></input>
             <datalist id="statelist">
                 {states.map((item,index)=>{
                     return <option key={index}>{item.state_name}</option>
                 })}
             </datalist>
 
-            <label for="selectdistricts" className="label">Enter Your District</label>
+            <label for="selectdistricts" className="label text-dark">Enter Your District</label>
             <input type="text" list="districtlist" id="selectdistricts" onChange={getCenters} placeholder="Enter Your District"></input>
             <datalist id="districtlist">
                 {districts.map((item,index)=>{
@@ -68,6 +68,11 @@ function  Vaccination() {
                     return <CentersCard item={item}/>
                 })}
             </div>
+
+
+            
+            </div>
+
         </div>
 }
 

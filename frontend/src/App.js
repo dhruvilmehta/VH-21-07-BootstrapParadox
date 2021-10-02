@@ -14,6 +14,7 @@ import Login from './components/Hospital/Login';
 import HospitalHome from "./components/Hospital/HospitalHome"
 import { HospitalContext } from './HospitalContext';
 import Redirector from './components/Redirector/Redirector';
+import VaccinationUser from "./components/VaccinationUser"
 function App() {
 
   const [user, setUser] = useState(null)
@@ -51,6 +52,7 @@ function App() {
               <Route path="/login" >{!user ? <Signin /> : <Redirect to="/" />}</Route>
               <Route path="/signup" >{!user ? <Signup /> : <Redirect to="/" />}</Route>
               <Route path='/hospital/index'>{<UserHospital  />}</Route>
+              <Route path='/vaccination'>{<VaccinationUser/>}</Route>
               <Route exact path="/hospital/">{<HospitalHome />}</Route>
               <Route path="/hospital/register">{<Register />}</Route>
               <Route path="/hospital/login">{<Login />}</Route>
